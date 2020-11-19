@@ -3,9 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>Job Search</title>
+        <style>
+            section{
+                display : grid;
+                gap : 20px;
+                grid-template-columns : repeat(4, 1fr);
+            }
+        </style>
     </head>
     <body>
         <h1>Search Results</h1>
-        <h2>You are looking for {{searchingBy}}.</h2> <!--Rendering-->
+        <h2>Found {{resultsNumber}} results for : {{searchingBy}}.</h2> <!--Rendering-->
+        <a href = "/export?word={{searchingBy}}">Export to CSV</a>
+        <section> <!--Make Table-->
+            <h3>Title</h3>
+            <h3>Company</h3>
+            <h3>Location</h3>
+            <h3>Link</h3>
+            {% for job in jobs %}
+                <span>{{job.title}}</span>
+                <span>{{job.company}}</span>
+                <span>{{job.location}}</span>
+                <a href = "{{job.link}}" target = "_blank">Apply</a>
+            {% endfor %}
+        </section>
     </body>
 </html>
